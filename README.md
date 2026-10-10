@@ -72,7 +72,9 @@ Shell (fish, and PowerShell set up the same way): the greyed-out suggestion come
 | [fzf](https://github.com/junegunn/fzf) | Fuzzy finder: type a few letters in any order, the list narrows as you type | `Ctrl+R` searches your whole history; `Ctrl+T` inserts a file path from the current folder; `Alt+C` jumps into a subfolder (on macOS: left Option+C). Both show a preview on the right. Also powers `zi`. In the list: ↑/↓ to move, Enter to pick, Esc to cancel. |
 | [eza](https://github.com/eza-community/eza) | `ls` with colours, icons and git status | `ls` lists the folder; `ll` adds sizes, dates ("2 hours ago") and a git column (`M` modified, `N` new…); `la` also shows hidden files; `lt` shows a tree two levels deep. |
 | [bat](https://github.com/sharkdp/bat) | `cat` with syntax highlighting, line numbers and git changes in the margin | `cat file` shows it highlighted; `bat file` does the same in a scrollable view (q to quit). Its theme follows the terminal's light/dark mode. It also draws the file preview in fzf's `Ctrl+T`. |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | Searches **inside** files, very fast, skipping what `.gitignore` excludes (node_modules, builds…) | `rg TkIcon` lists every line that mentions it, with the file and line number; `rg -l TkIcon` only the files; `rg TkIcon -t vue` only `.vue` files; `rg -w id` whole words only. Lowercase searches ignore case, a capital letter makes it exact. |
+| [fd](https://github.com/sharkdp/fd) | Finds files **by name**, very fast, skipping what `.gitignore` excludes | `fd objectives` finds `components/game/Objectives.vue`; `fd -e svg` all SVG files; `fd -t d icons` only folders. It also feeds fzf's `Ctrl+T` and `Alt+C`, so they no longer list node_modules. |
 
 ## To add later
 
-mise (language versions per project), ripgrep and fd (fast search), lazygit and delta (git), atuin (shared history, optional).
+mise (language versions per project), lazygit and delta (git), atuin (shared history, optional).

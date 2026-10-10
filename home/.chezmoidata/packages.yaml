@@ -10,6 +10,8 @@ packages:
     - fzf # fuzzy finder: Ctrl+R history, Ctrl+T files, Alt+C folders
     - eza # ls with colours, icons and git status (ls, ll, la, lt)
     - bat # cat with syntax highlighting and line numbers
+    - ripgrep # `rg <text>` searches inside files, fast, skipping .gitignore'd files
+    - fd # `fd <name>` finds files by name, fast, skipping .gitignore'd files
   # macOS only (apps)
   brewCasks:
     - wezterm
@@ -27,6 +29,8 @@ packages:
     - junegunn.fzf
     - eza-community.eza
     - sharkdp.bat
+    - BurntSushi.ripgrep.MSVC
+    - sharkdp.fd
   # Windows: JetBrainsMono Nerd Font, straight from the Nerd Fonts releases on GitHub
   # (winget's version is too old for some icons). Bump the version to update it.
   nerdFont:

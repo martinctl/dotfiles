@@ -1,0 +1,6 @@
+# ripgrep defaults (loaded through RIPGREP_CONFIG_PATH). One flag per line.
+# Case-insensitive unless the search has a capital letter
+--smart-case
+# Also search hidden files (.github, .env.example…), but never inside .git
+--hidden
+--glob=!.git/

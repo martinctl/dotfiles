@@ -28,6 +28,14 @@ if (Get-Command zoxide -ErrorAction SilentlyContinue) {
 # fzf: Ctrl+R searches history, Ctrl+T inserts a file path (through the PSFzf module)
 $env:FZF_DEFAULT_OPTS = '--height=40% --layout=reverse --border --color=16'
 $env:FZF_CTRL_T_OPTS = "--preview 'bat --color=always --style=numbers --line-range=:200 {}'"
+# fd lists the candidates: fast, and skips node_modules and anything in .gitignore
+if (Get-Command fd -ErrorAction SilentlyContinue) {
+    $env:FZF_DEFAULT_COMMAND = 'fd --type f --hidden --exclude .git'
+    $env:FZF_CTRL_T_COMMAND = $env:FZF_DEFAULT_COMMAND
+}
+
+# ripgrep: defaults in ~/.config/ripgrep/config (smart case, hidden files, never .git)
+$env:RIPGREP_CONFIG_PATH = Join-Path $HOME '.config\ripgrep\config'
 if ((Get-Command fzf -ErrorAction SilentlyContinue) -and (Get-Module -ListAvailable -Name PSFzf)) {
     Import-Module PSFzf
     Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'

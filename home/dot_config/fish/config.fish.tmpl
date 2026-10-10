@@ -11,6 +11,9 @@ fish_add_path -g ~/.local/go/bin ~/go/bin ~/.local/share/fnm
 # Node (fnm): switches version from the folder's .nvmrc / .node-version
 type -q fnm; and fnm env --use-on-cd --shell fish | source
 
+# ripgrep: defaults in ~/.config/ripgrep/config (smart case, hidden files, never .git)
+set -gx RIPGREP_CONFIG_PATH ~/.config/ripgrep/config
+
 if status is-interactive
     set -g fish_greeting # no welcome message
     starship init fish | source
@@ -24,6 +27,12 @@ if status is-interactive
     # Previews: the file's content for Ctrl+T, the folder's tree for Alt+C
     set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:200 {}'"
     set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --level=2 --icons=always --color=always {}'"
+    # fd lists the candidates: fast, and skips node_modules and anything in .gitignore
+    if type -q fd
+        set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden --exclude .git"
+        set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
+        set -gx FZF_ALT_C_COMMAND "fd --type d --hidden --exclude .git"
+    end
     type -q fzf; and fzf --fish | source
 
     # eza: ls with colours, icons and git status

@@ -1,0 +1,12 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /*
+  Does not replace ~/.ssh/config: it only makes sure the Include line below is at the top,
+  and keeps everything else in the file as it is.
+*/ -}}
+{{- $current := .chezmoi.stdin -}}
+{{- if not (contains "Include config.d/*" $current) -}}
+# Added by dotfiles: also load ~/.ssh/config.d/* (GitHub key, personal servers)
+Include config.d/*
+
+{{ end -}}
+{{- $current -}}

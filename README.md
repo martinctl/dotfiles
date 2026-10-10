@@ -10,8 +10,9 @@ My terminal setup (WezTerm, fish, Starship, git, SSH), identical on macOS, Windo
 | `dot_config/fish/config.fish.tmpl` | `~/.config/fish/config.fish` | macOS, Linux/WSL |
 | `dot_config/starship.toml.tmpl` | `~/.config/starship.toml` | all (badge `mac` / `win` / `wsl`) |
 | `dot_bashrc`, `dot_inputrc` | `~/.bashrc`, `~/.inputrc` | Linux/WSL |
-| `dot_gitconfig.tmpl`, `dot_config/git/ignore` | `~/.gitconfig`, `~/.config/git/ignore` | all |
-| `private_dot_ssh/private_config.tmpl` | `~/.ssh/config` (no keys, no servers) | all |
+| `dot_config/git/config.tmpl`, `dot_config/git/ignore` | `~/.config/git/config`, `~/.config/git/ignore` (your own `~/.gitconfig` is left alone, and wins) | all |
+| `private_dot_ssh/modify_private_config` | **adds** `Include config.d/*` at the top of `~/.ssh/config`, keeps the rest | all |
+| `private_dot_ssh/private_config.d/private_github` | `~/.ssh/config.d/github` (which key to use for GitHub) | macOS, Linux/WSL |
 | `Documents/…/Microsoft.PowerShell_profile.ps1` | PowerShell 7 and 5.1 profiles | Windows |
 | `AppData/…/WindowsTerminal…/settings.json` | Windows Terminal (fallback) | Windows |
 | `.chezmoidata/packages.yaml` | package lists (Homebrew, winget) | all |
@@ -32,8 +33,8 @@ Never in the repo: SSH keys, servers, `.env` files, tokens. Each machine generat
 
 ### macOS
 1. Install Homebrew: https://brew.sh
-2. `brew install chezmoi`, then `chezmoi init https://github.com/martinctl/dotfiles.git`
-3. **Before applying**, run `chezmoi diff`: an existing fish or SSH config would be replaced. Move what you want to keep into the repo (or into `~/.ssh/config.d/`).
+2. `brew install chezmoi`, then `chezmoi init martinctl`
+3. **Before applying**, run `chezmoi diff`: an existing `~/.config/fish/config.fish` would be replaced (SSH and git configs are only added to). Keep a copy, and move anything machine-specific to `~/.config/fish/conf.d/local.fish`, which fish loads by itself and the repo never touches.
 4. `chezmoi apply` (installs fish, Starship, WezTerm and the font), then switch to fish: add `$(brew --prefix)/bin/fish` to `/etc/shells` and run `chsh -s $(brew --prefix)/bin/fish`.
 
 ### Windows (+ WSL)

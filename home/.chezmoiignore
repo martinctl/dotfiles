@@ -16,4 +16,5 @@ AppData
 
 {{ if eq .chezmoi.os "windows" -}}
 .config/fish
+.ssh/config.d/github
 {{- end }}

@@ -48,12 +48,12 @@ Never in the repo: SSH keys, servers, `.env` files, tokens. Each machine generat
 
 ## Terminal shortcuts (WezTerm)
 
-Cmd on macOS = Ctrl on Windows. Native text navigation is untouched (Option/Cmd+arrows on macOS, Ctrl+arrows on Windows).
+Cmd on macOS = Ctrl on Windows, except for moving between panes, which uses the key next to the space bar (Cmd ↔ Alt). Native text navigation is untouched (Option/Cmd+arrows on macOS, Ctrl+arrows on Windows).
 
 | Action | macOS | Windows |
 |---|---|---|
 | Split in a direction | Cmd+Alt+arrow | Ctrl+Alt+arrow |
-| Move between panes | Cmd+Shift+arrow | Ctrl+Shift+arrow |
+| Move between panes | Cmd+Shift+arrow | Alt+Shift+arrow |
 | Zoom the pane in/out | Cmd+Z | Ctrl+Shift+Z |
 | Close the pane | Cmd+W | Ctrl+Shift+W |
 | New tab | Cmd+T | Ctrl+Shift+T |

@@ -2,55 +2,56 @@
 
 # Minimal one-line prompt: no background blocks, no filler words.
 # The leading badge shows the system: mac (grey), win (blue), wsl (orange).
+# Other colours are the terminal palette's names, so the prompt follows its light or dark theme.
 add_newline = false
-format = "{{ if eq .chezmoi.os "windows" }}[ win](bold #3794ff){{ else if eq .chezmoi.os "darwin" }}[ mac](bold #c8c8c8){{ else if .wsl }}[ wsl](bold #E95420){{ else }}[ linux](bold #f2c94c){{ end }} $directory$git_branch$git_status$nodejs$golang$python$cmd_duration$character"
+format = "{{ if eq .chezmoi.os "windows" }}[ win](bold #3794ff){{ else if eq .chezmoi.os "darwin" }}[ mac](bold #8a8a8a){{ else if .wsl }}[ wsl](bold #E95420){{ else }}[ linux](bold #f2c94c){{ end }} $directory$git_branch$git_status$nodejs$golang$python$cmd_duration$character"
 right_format = "$time"
 
 [directory]
 truncation_length = 4
-style = "bold #91ddff"
+style = "bold cyan"
 read_only = " "
-read_only_style = "#ff6b6b"
+read_only_style = "red"
 format = "[$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
 symbol = " "
-style = "#95ffa4"
+style = "green"
 format = "[$symbol$branch]($style) "
 
 [git_status]
-style = "#f2c94c"
+style = "yellow"
 format = "([$all_status$ahead_behind]($style) )"
 
 [nodejs]
 symbol = " "
-style = "#8cc265"
+style = "green"
 format = "[$symbol$version]($style) "
 version_format = "${major}.${minor}"
 
 [golang]
 symbol = " "
-style = "#00add8"
+style = "cyan"
 format = "[$symbol$version]($style) "
 version_format = "${major}.${minor}"
 
 [python]
 symbol = " "
-style = "#f7d154"
+style = "yellow"
 format = "[$symbol$version( \\($virtualenv\\))]($style) "
 version_format = "${major}.${minor}"
 
 [cmd_duration]
 min_time = 2000
-style = "#888888"
+style = "bright-black"
 format = "[ $duration]($style) "
 
 [character]
-success_symbol = "[❯](bold #95ffa4)"
-error_symbol = "[❯](bold #ff6b6b)"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
 
 [time]
 disabled = false
 time_format = "%H:%M:%S"
-style = "#666666"
+style = "bright-black"
 format = "[$time]($style)"

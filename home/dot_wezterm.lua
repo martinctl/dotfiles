@@ -13,22 +13,46 @@ local MOD = is_mac and 'CMD' or 'CTRL'
 local MOD_SAFE = is_mac and 'CMD' or 'CTRL|SHIFT'
 
 ------------------------------------------------------------------------------
--- Look: black background, Campbell palette (the Windows Terminal default)
+-- Look: follows the system's light/dark mode (WezTerm reloads it when the mode changes).
+-- Dark: Monokai Pro Spectrum, light: iTerm2 Tango Light (palettes from iTerm2-Color-Schemes).
 ------------------------------------------------------------------------------
+local function is_dark()
+  if wezterm.gui then
+    return wezterm.gui.get_appearance():find('Dark') ~= nil
+  end
+  return true
+end
+local dark = is_dark()
+
 config.font = wezterm.font_with_fallback({ 'JetBrainsMono Nerd Font', 'JetBrains Mono' })
 config.font_size = is_mac and 14 or 11
-config.colors = {
-  background = '#0C0C0C',
-  foreground = '#CCCCCC',
-  cursor_bg = '#FFFFFF',
-  cursor_fg = '#0C0C0C',
-  cursor_border = '#FFFFFF',
-  selection_bg = '#FFFFFF',
-  selection_fg = '#0C0C0C',
-  ansi = { '#0C0C0C', '#C50F1F', '#13A10E', '#C19C00', '#0037DA', '#881798', '#3A96DD', '#CCCCCC' },
-  brights = { '#767676', '#E74856', '#16C60C', '#F9F1A5', '#3B78FF', '#B4009E', '#61D6D6', '#F2F2F2' },
-  tab_bar = { background = '#0C0C0C' },
+config.color_schemes = {
+  ['Monokai Pro Spectrum'] = {
+    background = '#222222',
+    foreground = '#f7f1ff',
+    cursor_bg = '#bab6c0',
+    cursor_fg = '#faf6ff',
+    cursor_border = '#bab6c0',
+    selection_bg = '#525053',
+    selection_fg = '#f7f1ff',
+    ansi = { '#222222', '#fc618d', '#7bd88f', '#fce566', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff' },
+    brights = { '#69676c', '#fc618d', '#7bd88f', '#fce566', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff' },
+    tab_bar = { background = '#222222' },
+  },
+  ['iTerm2 Tango Light'] = {
+    background = '#ffffff',
+    foreground = '#000000',
+    cursor_bg = '#000000',
+    cursor_fg = '#ffffff',
+    cursor_border = '#000000',
+    selection_bg = '#c1deff',
+    selection_fg = '#000000',
+    ansi = { '#000000', '#d81e00', '#5ea702', '#cfae00', '#427ab3', '#89658e', '#00a7aa', '#c1c4be' },
+    brights = { '#686a66', '#f54235', '#8cd636', '#d7c53b', '#84b0d8', '#bc94b7', '#1eccce', '#f1f1f0' },
+    tab_bar = { background = '#f4f4f4' },
+  },
 }
+config.color_scheme = dark and 'Monokai Pro Spectrum' or 'iTerm2 Tango Light'
 config.initial_cols = 100
 config.initial_rows = 25
 config.window_padding = { left = 6, right = 6, top = 4, bottom = 4 }
@@ -63,12 +87,17 @@ end
 wezterm.on('format-tab-title', function(tab, _, _, _, _, max_width)
   local pane = tab.active_pane
   local is_wsl = pane.domain_name:find('^WSL:') ~= nil
-  local tint = is_wsl and '#7A3A1E' or (is_windows and '#24456E' or '#3A3A3A')
-  local dim = is_wsl and '#C9875F' or (is_windows and '#8FA9CC' or '#9A9A9A')
+  local tint = is_wsl and '#7A3A1E' or (is_windows and '#24456E' or '#4A4A4A')
+  local dim
+  if dark then
+    dim = is_wsl and '#C9875F' or (is_windows and '#8FA9CC' or '#9A9A9A')
+  else
+    dim = is_wsl and '#9A4A26' or (is_windows and '#2F5A8F' or '#5A5A5A')
+  end
   local title = tab.tab_title ~= '' and tab.tab_title or pane.title
   title = wezterm.truncate_right(title, max_width - 6)
   return {
-    { Background = { Color = tab.is_active and tint or '#161616' } },
+    { Background = { Color = tab.is_active and tint or (dark and '#1A1A1A' or '#E8E8E8') } },
     { Foreground = { Color = tab.is_active and '#FFFFFF' or dim } },
     { Text = ' ' .. (tab.tab_index + 1) .. ' ' .. title .. ' ' },
   }

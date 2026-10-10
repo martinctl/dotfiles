@@ -24,3 +24,10 @@ Invoke-Expression (&starship init powershell)
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
     Invoke-Expression (& { (zoxide init powershell | Out-String) })
 }
+
+# fzf: Ctrl+R searches history, Ctrl+T inserts a file path (through the PSFzf module)
+$env:FZF_DEFAULT_OPTS = '--height=40% --layout=reverse --border --color=16'
+if ((Get-Command fzf -ErrorAction SilentlyContinue) -and (Get-Module -ListAvailable -Name PSFzf)) {
+    Import-Module PSFzf
+    Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+}

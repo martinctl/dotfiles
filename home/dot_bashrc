@@ -18,3 +18,5 @@ alias ls='ls --color=auto' grep='grep --color=auto' ll='ls -alF'
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 command -v starship >/dev/null && eval "$(starship init bash)"
 command -v zoxide >/dev/null && eval "$(zoxide init bash)"
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --color=16"
+command -v fzf >/dev/null && eval "$(fzf --bash)"

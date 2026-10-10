@@ -1,6 +1,6 @@
 {{- if eq .chezmoi.os "windows" -}}
-# Installs the missing winget packages listed in .chezmoidata/packages.yaml.
-# chezmoi runs this script again whenever the list changes.
+# Installs the missing winget packages and PowerShell modules listed in .chezmoidata/packages.yaml.
+# chezmoi runs this script again whenever the lists change.
 $ids = @(
 {{- range .packages.winget }}
   '{{ . }}'
@@ -11,6 +11,19 @@ foreach ($id in $ids) {
   if ($LASTEXITCODE -ne 0) {
     Write-Host "Installing $id"
     winget install --id $id -e --accept-source-agreements --accept-package-agreements
+  }
+}
+
+# Modules go to PowerShell 7 (this script itself may run in Windows PowerShell 5.1)
+$modules = @(
+{{- range .packages.psModules }}
+  '{{ . }}'
+{{- end }}
+)
+$pwsh = Get-Command pwsh -ErrorAction SilentlyContinue
+if ($pwsh) {
+  foreach ($m in $modules) {
+    & $pwsh.Source -NoProfile -Command "if (-not (Get-Module -ListAvailable -Name '$m')) { Write-Host 'Installing module $m'; Install-Module -Name '$m' -Scope CurrentUser -Force -AcceptLicense }"
   }
 }
 {{ end -}}

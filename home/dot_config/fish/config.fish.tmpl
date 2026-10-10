@@ -17,4 +17,9 @@ if status is-interactive
 
     # zoxide: `z <part of a name>` jumps to a folder you've been to, `zi` picks from a list
     type -q zoxide; and zoxide init fish | source
+
+    # fzf: Ctrl+R searches history, Ctrl+T inserts a file path, Alt+C enters a subfolder.
+    # A compact list under the prompt, in the terminal theme's colours.
+    set -gx FZF_DEFAULT_OPTS "--height=40% --layout=reverse --border --color=16"
+    type -q fzf; and fzf --fish | source
 end

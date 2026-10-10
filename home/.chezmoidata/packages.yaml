@@ -7,6 +7,7 @@ packages:
     - starship
     - chezmoi
     - zoxide # `z <part of a name>` jumps to a folder you've been to
+    - fzf # fuzzy finder: Ctrl+R history, Ctrl+T files, Alt+C folders
   # macOS only (apps)
   brewCasks:
     - wezterm
@@ -22,3 +23,7 @@ packages:
     - DEVCOM.JetBrainsMonoNerdFont
     - Microsoft.VisualStudioCode
     - ajeetdsouza.zoxide
+    - junegunn.fzf
+  # Windows, PowerShell 7 modules (from the PowerShell Gallery)
+  psModules:
+    - PSFzf # plugs fzf into PowerShell's Ctrl+R / Ctrl+T

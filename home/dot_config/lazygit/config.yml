@@ -18,5 +18,8 @@ keybinding:
     togglePanel: <disabled>
     prevBlock: [<left>, h]
     nextBlock: [<right>, l]
+    # lazygit still adds these legacy defaults (Tab / Shift+Tab) to the two lines above: turn them off
+    prevBlock-alt2: <disabled>
+    nextBlock-alt2: <disabled>
     nextTab: <tab>
     prevTab: <backtab>

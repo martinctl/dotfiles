@@ -1,0 +1,19 @@
+# Managed by chezmoi: edit it in the dotfiles repo, then run `chezmoi apply`.
+# The interactive shell is fish; bash is mostly for agents (Claude Code) and scripts.
+
+# PATH comes before the "interactive" check: agents run bash and need it.
+[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export PATH="$HOME/.local/bin:$HOME/.local/go/bin:$HOME/go/bin:$HOME/.local/share/fnm:$PATH"
+command -v fnm >/dev/null && eval "$(fnm env --use-on-cd --shell bash)"
+
+# The rest only applies to interactive sessions.
+case $- in *i*) ;; *) return ;; esac
+
+HISTCONTROL=ignoreboth
+HISTSIZE=10000
+HISTFILESIZE=20000
+shopt -s histappend checkwinsize
+
+alias ls='ls --color=auto' grep='grep --color=auto' ll='ls -alF'
+[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+command -v starship >/dev/null && eval "$(starship init bash)"

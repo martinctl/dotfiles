@@ -1,0 +1,19 @@
+{{- /* What is NOT installed, depending on the OS. */ -}}
+
+{{ if ne .chezmoi.os "windows" -}}
+Documents
+AppData
+{{- end }}
+
+{{ if ne .chezmoi.os "linux" -}}
+.bashrc
+.inputrc
+{{- end }}
+
+{{ if eq .chezmoi.os "linux" -}}
+.wezterm.lua
+{{- end }}
+
+{{ if eq .chezmoi.os "windows" -}}
+.config/fish
+{{- end }}

@@ -1,0 +1,21 @@
+# Managed by chezmoi: edit it in the dotfiles repo, then run `chezmoi apply`.
+
+# Homebrew
+{{- if eq .chezmoi.os "darwin" }}
+/opt/homebrew/bin/brew shellenv fish | source
+{{- else }}
+/home/linuxbrew/.linuxbrew/bin/brew shellenv fish | source
+{{- end }}
+
+fish_add_path -g ~/.local/bin
+{{- if eq .chezmoi.os "linux" }}
+fish_add_path -g ~/.local/go/bin ~/go/bin ~/.local/share/fnm
+{{- end }}
+
+# Node (fnm): switches version from the folder's .nvmrc / .node-version
+type -q fnm; and fnm env --use-on-cd --shell fish | source
+
+if status is-interactive
+    set -g fish_greeting # no welcome message
+    starship init fish | source
+end

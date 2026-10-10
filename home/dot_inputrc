@@ -1,0 +1,3 @@
+$include /etc/inputrc
+# No beep (backspace at the start of the line, impossible completion…)
+set bell-style none

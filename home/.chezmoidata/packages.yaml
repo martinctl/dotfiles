@@ -1,0 +1,22 @@
+# Packages installed by chezmoi. Add a line here, then run `chezmoi apply` (or `chezmoi update`
+# on the other machines): the install script runs again by itself whenever this list changes.
+packages:
+  # macOS and Linux/WSL, with Homebrew
+  brew:
+    - fish
+    - starship
+    - chezmoi
+  # macOS only (apps)
+  brewCasks:
+    - wezterm
+    - font-jetbrains-mono-nerd-font
+  # Windows, with winget
+  winget:
+    - Git.Git
+    - GitHub.cli
+    - Microsoft.PowerShell
+    - Starship.Starship
+    - twpayne.chezmoi
+    - wez.wezterm
+    - DEVCOM.JetBrainsMonoNerdFont
+    - Microsoft.VisualStudioCode

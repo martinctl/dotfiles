@@ -11,6 +11,8 @@ local is_windows = wezterm.target_triple:find('windows') ~= nil
 local MOD = is_mac and 'CMD' or 'CTRL'
 -- For shortcuts where Ctrl alone would clash with the shell (Ctrl+W, Ctrl+T…), PCs use Ctrl+Shift.
 local MOD_SAFE = is_mac and 'CMD' or 'CTRL|SHIFT'
+-- Moving between panes uses the key right next to the space bar: Cmd on macOS, Alt on Windows.
+local NAV = is_mac and 'CMD|SHIFT' or 'ALT|SHIFT'
 
 ------------------------------------------------------------------------------
 -- Look: follows the system's light/dark mode (WezTerm reloads it when the mode changes).
@@ -117,11 +119,11 @@ config.keys = {
   { key = 'UpArrow', mods = MOD .. '|ALT', action = act.SplitPane({ direction = 'Up' }) },
   { key = 'DownArrow', mods = MOD .. '|ALT', action = act.SplitPane({ direction = 'Down' }) },
 
-  -- Move between panes: Cmd/Ctrl + Shift + arrow
-  { key = 'LeftArrow', mods = MOD .. '|SHIFT', action = act.ActivatePaneDirection('Left') },
-  { key = 'RightArrow', mods = MOD .. '|SHIFT', action = act.ActivatePaneDirection('Right') },
-  { key = 'UpArrow', mods = MOD .. '|SHIFT', action = act.ActivatePaneDirection('Up') },
-  { key = 'DownArrow', mods = MOD .. '|SHIFT', action = act.ActivatePaneDirection('Down') },
+  -- Move between panes: Cmd+Shift+arrow on macOS, Alt+Shift+arrow on Windows
+  { key = 'LeftArrow', mods = NAV, action = act.ActivatePaneDirection('Left') },
+  { key = 'RightArrow', mods = NAV, action = act.ActivatePaneDirection('Right') },
+  { key = 'UpArrow', mods = NAV, action = act.ActivatePaneDirection('Up') },
+  { key = 'DownArrow', mods = NAV, action = act.ActivatePaneDirection('Down') },
 
   -- Close the pane (Cmd+W / Ctrl+Shift+W); zoom the pane in and out (Cmd+Z / Ctrl+Shift+Z)
   { key = 'w', mods = MOD_SAFE, action = act.CloseCurrentPane({ confirm = false }) },

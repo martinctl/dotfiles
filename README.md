@@ -16,7 +16,7 @@ My terminal setup (WezTerm, fish, Starship, git, SSH), identical on macOS, Windo
 | `Documents/…/Microsoft.PowerShell_profile.ps1` | PowerShell 7 and 5.1 profiles | Windows |
 | `AppData/…/WindowsTerminal…/settings.json` | Windows Terminal (fallback) | Windows |
 | `.chezmoidata/packages.yaml` | package lists (Homebrew, winget) | all |
-| `.chezmoiscripts/` | install those packages when the lists change | all |
+| `.chezmoiscripts/` | install those packages when the lists change, and on Windows the latest JetBrainsMono Nerd Font from GitHub (winget's is too old for some icons) | all |
 | `scripts/wsl-root-setup.sh` | the `sudo` part of a fresh WSL (apt, Docker, gh, fish) | WSL, run by hand |
 
 Never in the repo: SSH keys, servers, `.env` files, tokens. Each machine generates its own SSH key, and personal servers go in `~/.ssh/config.d/` (picked up by the `Include` line).

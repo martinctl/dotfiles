@@ -1,0 +1,31 @@
+{{- if eq .chezmoi.os "windows" -}}
+# Installs JetBrainsMono Nerd Font {{ .packages.nerdFont.version }} for the current user, from the official Nerd Fonts
+# release on GitHub (winget only has an older version, without the newest icons).
+# chezmoi runs this script again when the version in .chezmoidata/packages.yaml changes.
+# If it fails because the font is in use, close the terminals and run `chezmoi apply` again.
+$ErrorActionPreference = 'Stop'
+$version = '{{ .packages.nerdFont.version }}'
+$fontDir = Join-Path $env:LOCALAPPDATA 'Microsoft\Windows\Fonts'
+$regKey = 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts'
+$tmp = Join-Path ([IO.Path]::GetTempPath()) ('nerd-font-' + [guid]::NewGuid())
+New-Item -ItemType Directory -Path $tmp | Out-Null
+try {
+  $archive = Join-Path $tmp 'JetBrainsMono.tar.xz'
+  Write-Host "Downloading JetBrainsMono Nerd Font $version"
+  Invoke-WebRequest -UseBasicParsing -OutFile $archive `
+    -Uri "https://github.com/ryanoasis/nerd-fonts/releases/download/$version/JetBrainsMono.tar.xz"
+  tar -xf $archive -C $tmp
+  New-Item -ItemType Directory -Force -Path $fontDir | Out-Null
+  $fonts = Get-ChildItem -Path $tmp -Filter 'JetBrainsMonoNerdFont-*.ttf'
+  if (-not $fonts) { throw 'No JetBrainsMonoNerdFont-*.ttf file in the archive' }
+  foreach ($f in $fonts) {
+    $dest = Join-Path $fontDir $f.Name
+    Copy-Item -LiteralPath $f.FullName -Destination $dest -Force
+    $style = $f.BaseName -replace '^JetBrainsMonoNerdFont-', ''
+    Set-ItemProperty -Path $regKey -Name "JetBrainsMono Nerd Font $style (TrueType)" -Value $dest
+  }
+  Write-Host "Installed $($fonts.Count) font files. Restart the terminals to use them."
+} finally {
+  Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
+}
+{{ end -}}

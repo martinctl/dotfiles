@@ -22,12 +22,15 @@ packages:
     - Starship.Starship
     - twpayne.chezmoi
     - wez.wezterm
-    - DEVCOM.JetBrainsMonoNerdFont
     - Microsoft.VisualStudioCode
     - ajeetdsouza.zoxide
     - junegunn.fzf
     - eza-community.eza
     - sharkdp.bat
+  # Windows: JetBrainsMono Nerd Font, straight from the Nerd Fonts releases on GitHub
+  # (winget's version is too old for some icons). Bump the version to update it.
+  nerdFont:
+    version: v3.5.1
   # Windows, PowerShell 7 modules (from the PowerShell Gallery)
   psModules:
     - PSFzf # plugs fzf into PowerShell's Ctrl+R / Ctrl+T

@@ -57,3 +57,9 @@ if (Get-Command bat -ErrorAction SilentlyContinue) {
     Remove-Item Alias:cat -Force -ErrorAction SilentlyContinue
     function cat { bat --paging=never @args }
 }
+
+# lazygit: git in a full-screen interface (same config location on every OS)
+$env:LG_CONFIG_FILE = Join-Path $HOME '.config\lazygit\config.yml'
+if (Get-Command lazygit -ErrorAction SilentlyContinue) {
+    Set-Alias lg lazygit
+}

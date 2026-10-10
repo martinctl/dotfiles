@@ -13,6 +13,8 @@ type -q fnm; and fnm env --use-on-cd --shell fish | source
 
 # ripgrep: defaults in ~/.config/ripgrep/config (smart case, hidden files, never .git)
 set -gx RIPGREP_CONFIG_PATH ~/.config/ripgrep/config
+# lazygit: same config location on every OS
+set -gx LG_CONFIG_FILE ~/.config/lazygit/config.yml
 
 if status is-interactive
     set -g fish_greeting # no welcome message
@@ -47,4 +49,7 @@ if status is-interactive
     set -gx BAT_THEME_DARK "Monokai Extended"
     set -gx BAT_THEME_LIGHT GitHub
     type -q bat; and alias cat 'bat --paging=never'
+
+    # lazygit: git in a full-screen interface
+    type -q lazygit; and alias lg lazygit
 end

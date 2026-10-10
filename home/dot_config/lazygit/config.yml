@@ -1,0 +1,13 @@
+# lazygit config, loaded through LG_CONFIG_FILE (same place on every OS).
+# Reference: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+git:
+  # Diffs drawn by delta, light or dark like the terminal, side by side when the view is wide enough.
+  # `|` cycles to plain git output.
+  diffRenderers:
+    - command: delta --{{colorScheme}} --paging=never {{if gt .width 160}}--side-by-side{{end}}
+      name: delta
+    - type: rawGit
+      name: git
+gui:
+  # File icons in the lists (needs a Nerd Font, which the terminal has)
+  nerdFontsVersion: "3"

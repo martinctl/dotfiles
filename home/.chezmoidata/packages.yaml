@@ -12,6 +12,8 @@ packages:
     - bat # cat with syntax highlighting and line numbers
     - ripgrep # `rg <text>` searches inside files, fast, skipping .gitignore'd files
     - fd # `fd <name>` finds files by name, fast, skipping .gitignore'd files
+    - lazygit # git in a full-screen interface (`lg`)
+    - git-delta # readable diffs for git and lazygit
   # macOS only (apps)
   brewCasks:
     - wezterm
@@ -31,6 +33,8 @@ packages:
     - sharkdp.bat
     - BurntSushi.ripgrep.MSVC
     - sharkdp.fd
+    - JesseDuffield.lazygit
+    - dandavison.delta
   # Windows: JetBrainsMono Nerd Font, straight from the Nerd Fonts releases on GitHub
   # (winget's version is too old for some icons). Bump the version to update it.
   nerdFont:

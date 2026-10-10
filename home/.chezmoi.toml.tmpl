@@ -7,9 +7,15 @@
 {{-     $wsl = true -}}
 {{-   end -}}
 {{- end -}}
+{{- /* Homebrew lives in /opt/homebrew on Apple Silicon, /usr/local on Intel Macs, /home/linuxbrew on Linux. */ -}}
+{{- $brewPrefix := "/home/linuxbrew/.linuxbrew" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $brewPrefix = ternary "/opt/homebrew" "/usr/local" (eq .chezmoi.arch "arm64") -}}
+{{- end -}}
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
   name = {{ $name | quote }}
   email = {{ $email | quote }}
   wsl = {{ $wsl }}
+  brewPrefix = {{ $brewPrefix | quote }}

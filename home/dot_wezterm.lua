@@ -110,6 +110,21 @@ for i = 1, 9 do
   table.insert(config.keys, { key = 'phys:' .. i, mods = MOD, action = act.ActivateTab(i - 1) })
 end
 
+-- macOS: keep the usual text navigation, like in Terminal or Ghostty
+if is_mac then
+  local mac_keys = {
+    { key = 'LeftArrow', mods = 'CMD', action = act.SendKey({ key = 'Home' }) }, -- start of line
+    { key = 'RightArrow', mods = 'CMD', action = act.SendKey({ key = 'End' }) }, -- end of line
+    { key = 'Backspace', mods = 'CMD', action = act.SendString('\x15') }, -- delete to start of line
+    { key = 'LeftArrow', mods = 'OPT', action = act.SendString('\x1bb') }, -- previous word
+    { key = 'RightArrow', mods = 'OPT', action = act.SendString('\x1bf') }, -- next word
+    { key = 'Backspace', mods = 'OPT', action = act.SendString('\x17') }, -- delete previous word
+  }
+  for _, k in ipairs(mac_keys) do
+    table.insert(config.keys, k)
+  end
+end
+
 -- Windows/Linux: Ctrl+C copies when there is a selection (otherwise it interrupts as usual), Ctrl+V pastes
 if not is_mac then
   table.insert(config.keys, {

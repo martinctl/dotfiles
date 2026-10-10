@@ -34,7 +34,7 @@ Never in the repo: SSH keys, servers, `.env` files, tokens. Each machine generat
 1. Install Homebrew: https://brew.sh
 2. `brew install chezmoi`, then `chezmoi init https://github.com/martinctl/dotfiles.git`
 3. **Before applying**, run `chezmoi diff`: an existing fish or SSH config would be replaced. Move what you want to keep into the repo (or into `~/.ssh/config.d/`).
-4. `chezmoi apply` (installs fish, Starship, WezTerm and the font), then switch to fish: add `/opt/homebrew/bin/fish` to `/etc/shells` and run `chsh -s /opt/homebrew/bin/fish`.
+4. `chezmoi apply` (installs fish, Starship, WezTerm and the font), then switch to fish: add `$(brew --prefix)/bin/fish` to `/etc/shells` and run `chsh -s $(brew --prefix)/bin/fish`.
 
 ### Windows (+ WSL)
 1. Windows: `winget install twpayne.chezmoi`, then `chezmoi init --apply https://github.com/martinctl/dotfiles.git`. The winget packages install themselves.

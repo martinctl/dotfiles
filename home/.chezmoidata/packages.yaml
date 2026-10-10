@@ -6,6 +6,7 @@ packages:
     - fish
     - starship
     - chezmoi
+    - zoxide # `z <part of a name>` jumps to a folder you've been to
   # macOS only (apps)
   brewCasks:
     - wezterm
@@ -20,3 +21,4 @@ packages:
     - wez.wezterm
     - DEVCOM.JetBrainsMonoNerdFont
     - Microsoft.VisualStudioCode
+    - ajeetdsouza.zoxide

@@ -64,6 +64,12 @@ Cmd on macOS = Ctrl on Windows. Native text navigation is untouched (Option/Cmd+
 
 Shell (fish, and PowerShell set up the same way): the greyed-out suggestion comes from history, → accepts it, Tab completes, ↑/↓ search the commands that start the same way.
 
+## Command-line tools
+
+| Tool | What it does | How to use it |
+|---|---|---|
+| [zoxide](https://github.com/ajeetdsouza/zoxide) | Remembers the folders you visit and jumps back to them | `z track` → `~/dev/trackimo`; `z track serv` → `~/dev/trackimo/trackimo-service` (several words narrow it down); `z -` → previous folder; `zi` → pick from a list. It learns as you move around with `cd` or `z`. |
+
 ## To add later
 
-mise (language versions per project), fzf (fuzzy search), zoxide (jump between folders), eza and bat (better ls and cat), ripgrep and fd (fast search), lazygit and delta (git), atuin (shared history, optional).
+mise (language versions per project), fzf (fuzzy search), eza and bat (better ls and cat), ripgrep and fd (fast search), lazygit and delta (git), atuin (shared history, optional).

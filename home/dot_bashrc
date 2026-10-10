@@ -17,3 +17,4 @@ shopt -s histappend checkwinsize
 alias ls='ls --color=auto' grep='grep --color=auto' ll='ls -alF'
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 command -v starship >/dev/null && eval "$(starship init bash)"
+command -v zoxide >/dev/null && eval "$(zoxide init bash)"

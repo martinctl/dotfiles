@@ -14,4 +14,7 @@ type -q fnm; and fnm env --use-on-cd --shell fish | source
 if status is-interactive
     set -g fish_greeting # no welcome message
     starship init fish | source
+
+    # zoxide: `z <part of a name>` jumps to a folder you've been to, `zi` picks from a list
+    type -q zoxide; and zoxide init fish | source
 end

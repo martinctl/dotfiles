@@ -19,3 +19,8 @@ Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
 # Starship: the prompt (config in ~/.config/starship.toml)
 Invoke-Expression (&starship init powershell)
+
+# zoxide: `z <part of a name>` jumps to a folder you've been to, `zi` picks from a list
+if (Get-Command zoxide -ErrorAction SilentlyContinue) {
+    Invoke-Expression (& { (zoxide init powershell | Out-String) })
+}

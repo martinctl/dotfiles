@@ -141,10 +141,7 @@ end
 
 -- macOS: keep the usual text navigation, like in Terminal or Ghostty
 if is_mac then
-  -- Option types special characters (| { } [ ] ~ on a French keyboard) instead of acting as Alt.
-  -- For a shell's Alt shortcut (fzf's Alt+C…), press Esc then the key.
-  config.send_composed_key_when_left_alt_is_pressed = true
-  config.send_composed_key_when_right_alt_is_pressed = true
+  -- (WezTerm default: left Option acts as Alt, right Option types special characters.)
   local mac_keys = {
     { key = 'LeftArrow', mods = 'CMD', action = act.SendKey({ key = 'Home' }) }, -- start of line
     { key = 'RightArrow', mods = 'CMD', action = act.SendKey({ key = 'End' }) }, -- end of line

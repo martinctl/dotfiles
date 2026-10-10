@@ -69,7 +69,7 @@ Shell (fish, and PowerShell set up the same way): the greyed-out suggestion come
 | Tool | What it does | How to use it |
 |---|---|---|
 | [zoxide](https://github.com/ajeetdsouza/zoxide) | Remembers the folders you visit and jumps back to them | `z track` → `~/dev/trackimo`; `z track serv` → `~/dev/trackimo/trackimo-service` (several words narrow it down); `z -` → previous folder; `zi` → pick from a list. It learns as you move around with `cd` or `z`. |
-| [fzf](https://github.com/junegunn/fzf) | Fuzzy finder: type a few letters in any order, the list narrows as you type | `Ctrl+R` searches your whole history; `Ctrl+T` inserts a file path from the current folder; `Alt+C` jumps into a subfolder (on macOS: `Esc` then `C`). Also powers `zi`. In the list: ↑/↓ to move, Enter to pick, Esc to cancel. |
+| [fzf](https://github.com/junegunn/fzf) | Fuzzy finder: type a few letters in any order, the list narrows as you type | `Ctrl+R` searches your whole history; `Ctrl+T` inserts a file path from the current folder; `Alt+C` jumps into a subfolder (on macOS: left Option+C). Also powers `zi`. In the list: ↑/↓ to move, Enter to pick, Esc to cancel. |
 
 ## To add later
 

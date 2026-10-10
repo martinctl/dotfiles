@@ -11,3 +11,12 @@ git:
 gui:
   # File icons in the lists (needs a Nerd Font, which the terminal has)
   nerdFontsVersion: "3"
+keybinding:
+  universal:
+    # Tab / Shift+Tab switch the tabs of a panel (Files - Worktrees - Submodules…):
+    # the default [ and ] need AltGr on AZERTY keyboards. Arrows still move between panels.
+    togglePanel: <disabled>
+    prevBlock: [<left>, h]
+    nextBlock: [<right>, l]
+    nextTab: <tab>
+    prevTab: <backtab>

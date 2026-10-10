@@ -27,7 +27,25 @@ if (Get-Command zoxide -ErrorAction SilentlyContinue) {
 
 # fzf: Ctrl+R searches history, Ctrl+T inserts a file path (through the PSFzf module)
 $env:FZF_DEFAULT_OPTS = '--height=40% --layout=reverse --border --color=16'
+$env:FZF_CTRL_T_OPTS = "--preview 'bat --color=always --style=numbers --line-range=:200 {}'"
 if ((Get-Command fzf -ErrorAction SilentlyContinue) -and (Get-Module -ListAvailable -Name PSFzf)) {
     Import-Module PSFzf
     Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+}
+
+# eza: ls with colours, icons and git status (replaces PowerShell's own `ls` alias)
+if (Get-Command eza -ErrorAction SilentlyContinue) {
+    Remove-Item Alias:ls -Force -ErrorAction SilentlyContinue
+    function ls { eza --icons=auto --group-directories-first @args }
+    function ll { eza -l --git --icons=auto --group-directories-first --time-style=relative @args }
+    function la { eza -la --git --icons=auto --group-directories-first --time-style=relative @args }
+    function lt { eza --tree --level=2 --icons=auto --group-directories-first @args }
+}
+
+# bat: cat with syntax highlighting (theme follows the terminal's light/dark mode)
+$env:BAT_THEME_DARK = 'Monokai Extended'
+$env:BAT_THEME_LIGHT = 'GitHub'
+if (Get-Command bat -ErrorAction SilentlyContinue) {
+    Remove-Item Alias:cat -Force -ErrorAction SilentlyContinue
+    function cat { bat --paging=never @args }
 }

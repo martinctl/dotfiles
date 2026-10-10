@@ -21,5 +21,21 @@ if status is-interactive
     # fzf: Ctrl+R searches history, Ctrl+T inserts a file path, Alt+C enters a subfolder.
     # A compact list under the prompt, in the terminal theme's colours.
     set -gx FZF_DEFAULT_OPTS "--height=40% --layout=reverse --border --color=16"
+    # Previews: the file's content for Ctrl+T, the folder's tree for Alt+C
+    set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:200 {}'"
+    set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --level=2 --icons=always --color=always {}'"
     type -q fzf; and fzf --fish | source
+
+    # eza: ls with colours, icons and git status
+    if type -q eza
+        alias ls 'eza --icons=auto --group-directories-first'
+        alias ll 'eza -l --git --icons=auto --group-directories-first --time-style=relative'
+        alias la 'eza -la --git --icons=auto --group-directories-first --time-style=relative'
+        alias lt 'eza --tree --level=2 --icons=auto --group-directories-first'
+    end
+
+    # bat: cat with syntax highlighting (theme follows the terminal's light/dark mode)
+    set -gx BAT_THEME_DARK "Monokai Extended"
+    set -gx BAT_THEME_LIGHT GitHub
+    type -q bat; and alias cat 'bat --paging=never'
 end

@@ -4,6 +4,8 @@
 {{ .brewPrefix }}/bin/brew shellenv fish | source
 
 fish_add_path -g ~/.local/bin
+# Rust (rustup): cargo, rustc and tools installed with `cargo install`
+fish_add_path -g ~/.cargo/bin
 {{- if eq .chezmoi.os "linux" }}
 fish_add_path -g ~/.local/go/bin ~/go/bin ~/.local/share/fnm
 {{- end }}

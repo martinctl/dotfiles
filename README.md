@@ -76,6 +76,7 @@ Shell (fish, and PowerShell set up the same way): the greyed-out suggestion come
 | [fd](https://github.com/sharkdp/fd) | Finds files **by name**, very fast, skipping what `.gitignore` excludes | `fd objectives` finds `components/game/Objectives.vue`; `fd -e svg` all SVG files; `fd -t d icons` only folders. It also feeds fzf's `Ctrl+T` and `Alt+C`, so they no longer list node_modules. |
 | [delta](https://github.com/dandavison/delta) | Makes git's diffs readable: syntax highlighting, line numbers, changed words highlighted | Nothing to learn: `git diff`, `git show`, `git log -p` use it by itself. In a long diff, `n` / `N` jump to the next / previous file, `q` quits. Merge conflicts also show the common ancestor (`zdiff3`). |
 | [lazygit](https://github.com/jesseduffield/lazygit) | git in a full-screen interface: see changes, stage, commit, push, switch branches without remembering commands | `lg` in a repo. Arrows (or `h`/`l`) move between panels, Tab / Shift+Tab switch a panel's tabs (Files, Worktrees…), `space` stages a file (Enter on a file to stage single lines), `c` commits, `P` pushes, `p` pulls, `?` lists every shortcut of the current panel, `q` quits. Diffs are drawn by delta. |
+| [Neovim](https://neovim.io) | Text editor in the terminal (a modern Vim), for editing a file without leaving the shell | `nvim file` opens it. `i` to type, `Esc` to stop typing, then `:w` saves and `:q` quits (`:q!` quits without saving). It runs with its defaults: there is no Neovim config in the repo yet. |
 
 ## To add later
 

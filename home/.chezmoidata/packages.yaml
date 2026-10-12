@@ -14,6 +14,7 @@ packages:
     - fd # `fd <name>` finds files by name, fast, skipping .gitignore'd files
     - lazygit # git in a full-screen interface (`lg`)
     - git-delta # readable diffs for git and lazygit
+    - neovim # text editor in the terminal (`nvim <file>`)
   # macOS only (apps)
   brewCasks:
     - wezterm
@@ -35,6 +36,7 @@ packages:
     - sharkdp.fd
     - JesseDuffield.lazygit
     - dandavison.delta
+    - Neovim.Neovim
   # Windows: JetBrainsMono Nerd Font, straight from the Nerd Fonts releases on GitHub
   # (winget's version is too old for some icons). Bump the version to update it.
   nerdFont:
